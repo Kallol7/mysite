@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>{% block title %}Home Page{% endblock %}</title> -->
+    <title>Kallol's Site</title>
+    <link rel="stylesheet" href="./styles.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <style>
+        :root {
+            --primary: #3d4cad; 
+            --secondary: #5365de;
+            --background: #b2c4d8;
+            --danger: #8c0000;
+            --success: #97ff83;
+        }
+        [data-theme="dark"] {
+            --primary: #313743; /* Dark Theme */
+            --secondary: #b6c0cd;
+            --background: #d3d9e0;
+            --danger: #8c0000;
+            --success: #0d5500;
+        }
+        [data-theme="green"] {
+            --primary: #065F46; /* Green Theme */
+            --secondary: #10B981;
+            --background: #ECFDF5;
+            --danger: #8c0000;
+            --success: #0d5500;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--primary)] flex flex-col min-h-screen min-w-[220px]">
+    <nav class="bg-[var(--primary)] text-white p-4 flex flex-col md:flex-row justify-between items-center">
+        <a href="/" class="text-xl font-semibold">Kallol's Site</i></a>
+        <!-- <a href="/" class="text-xl font-semibold">Kallol&trade;</i></a> -->
+        
+        <!-- <a href="{% url 'courses' %}" class="px-3 py-1 bg-gray-200 text-black rounded md:ml-auto md:mr-4">Courses</a>
+
+        <a href="{% url 'students' %}" class="px-3 py-1 bg-gray-200 text-black rounded md:mr-4">Students</a>
+
+        <a href="{% url 'student_form' %}" class="px-3 py-1 bg-gray-200 text-black rounded md:mr-4">Add Student</a>
+
+        <a href="{% url 'course_form' %}" class="px-3 py-1 bg-gray-200 text-black rounded md:mr-4">Add Course</a> -->
+        
+        <div class="relative">
+            <button id="theme-button" onclick="toggleVisibility('theme-menu')"
+                class="px-3 py-1 bg-gray-200 text-black rounded">Theme
+            </button>
+            
+            <div id="theme-menu" class="hidden absolute mt-2 shadow-md rounded" onmouseleave="toggleVisibility('theme-menu')">
+                <button onclick="setTheme('default'); toggleVisibility('theme-menu');"
+                    class="block px-3 py-1 bg-gray-200 text-black rounded mx-auto">Default
+                </button>
+                <button onclick="setTheme('dark'); toggleVisibility('theme-menu');"
+                    class="block text-center px-3 py-1 bg-gray-800 text-white rounded mx-auto">Dark
+                </button>
+                <button onclick="setTheme('green'); toggleVisibility('theme-menu');"
+                    class="block text-center px-3 py-1 bg-green-600 text-white rounded mx-auto">Green
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container mx-auto p-6 max-w-7xl">
+    <p class="text-2xl mt-4">Welcome to my website!</p>
+    <!-- {% block content %}
+        <button onclick="toggleVisibility('toggle-button')">Toggle Button</button>
+        <div id="toggle-button" class="hidden">
+            Toggle Content Visible
+        </div>
+    {% endblock %} -->
+    </main>
+    
+    <footer class="text-center py-4 bg-[var(--primary)] text-white mt-auto">
+        <p>&copy; 2025 Kallol7</p>
+    </footer>
+    
+    <script>
+        window.onload = setThemeOnPageLoad
+        function toggleVisibility(id) {
+            let element = document.getElementById(id);
+            if (element) {
+                element.classList.toggle('hidden');
+            }
+        }
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme)
+            localStorage.setItem('theme', theme);
+        }
+        function setThemeOnPageLoad() {
+            theme = localStorage.getItem('theme')
+            if (theme) {
+                setTheme(theme);
+            } else {
+                setTheme('dark');
+            }
+        }
+    </script>
+</body>
+</html>
