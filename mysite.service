@@ -1,0 +1,16 @@
+[Unit]
+Description=Start MySite
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/kallol.live
+Environment="PATH=/var/www/kallol.live/venv/bin"
+ExecStart=/var/www/kallol.live/venv/bin/gunicorn mysite.wsgi:application --bind 127.0.0.1:8000
+ExecStop=pkill gunicorn
+Restart=always
+User=ec2-user
+Group=ec2-user
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
